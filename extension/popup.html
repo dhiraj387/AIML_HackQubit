@@ -2,15 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Toxicity Detector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Toxicity Shield</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="container">
-    <h2>Toxicity Detector</h2>
-    <div id="status">Analyzing...</div>
-    <div id="score"></div>
+  <div id="app">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="logo-container">
+        <div class="shield-icon">🛡️</div>
+        <div class="title-group">
+          <h1 class="app-title">AI Shield</h1>
+          <p class="app-subtitle">Toxicity Protection</p>
+        </div>
+      </div>
+      <div class="status-indicator" id="connectionStatus">
+        <div class="pulse-dot"></div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Analysis Section -->
+      <div class="analysis-card" id="analysisCard">
+        <div class="card-header">
+          <div class="scan-icon" id="scanIcon">🔍</div>
+          <h3 class="card-title">Page Analysis</h3>
+        </div>
+        
+        <div class="analysis-content" id="analysisContent">
+          <div class="loading-state" id="loadingState">
+            <div class="spinner"></div>
+            <p class="loading-text">Scanning content...</p>
+          </div>
+          
+          <div class="result-state" id="resultState" style="display: none;">
+            <div class="result-badge" id="resultBadge">
+              <div class="result-icon" id="resultIcon">✅</div>
+              <div class="result-info">
+                <div class="result-label" id="resultLabel">Safe</div>
+                <div class="result-sublabel" id="resultSublabel">Content appears clean</div>
+              </div>
+            </div>
+            
+            <div class="metrics">
+              <div class="metric-item">
+                <div class="metric-label">Toxicity Score</div>
+                <div class="metric-value" id="toxicityScore">0%</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Language</div>
+                <div class="metric-value" id="languageDetected">English</div>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-labels">
+                <span>Safe</span>
+                <span>Neutral</span>
+                <span>Toxic</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="error-state" id="errorState" style="display: none;">
+            <div class="error-icon">⚠️</div>
+            <div class="error-message" id="errorMessage">Connection failed</div>
+            <button class="retry-btn" id="retryBtn">Retry Analysis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="actions">
+        <button class="action-btn primary" id="rescanBtn">
+          <span class="btn-icon">🔄</span>
+          <span class="btn-text">Rescan Page</span>
+        </button>
+        <button class="action-btn secondary" id="settingsBtn">
+          <span class="btn-icon">⚙️</span>
+          <span class="btn-text">Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-stats">
+        <span class="stat-item">
+          <span class="stat-icon">🔍</span>
+          <span class="stat-text">Real-time AI Detection</span>
+        </span>
+      </div>
+    </div>
   </div>
+  
   <script src="popup.js"></script>
 </body>
 </html>

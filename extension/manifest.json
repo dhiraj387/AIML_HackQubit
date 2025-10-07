@@ -1,19 +1,44 @@
 {
   "manifest_version": 3,
-  "name": "Toxicity Detector",
-  "version": "1.0",
-  "description": "Detects hate speech and offensive content on any webpage.",
-  "permissions": ["activeTab", "scripting"],
+  "name": "AI Toxicity Shield",
+  "version": "2.0",
+  "description": "Advanced AI-powered toxicity and hate speech detection with real-time analysis and multilingual support.",
+  "permissions": [
+    "activeTab", 
+    "scripting",
+    "storage"
+  ],
   "host_permissions": [
-    "http://127.0.0.1:8000/*"
+    "http://127.0.0.1:8000/*",
+    "https://127.0.0.1:8000/*"
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "AI Toxicity Shield - Analyze Page Content",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["*.png", "*.jpg", "*.svg"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
