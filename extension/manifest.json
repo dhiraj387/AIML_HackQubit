@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Toxicity Detector",
+  "version": "1.0",
+  "description": "Detects hate speech and offensive content on any webpage.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "http://127.0.0.1:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
