@@ -172,4 +172,17 @@ def self_test():
         return jsonify({'ok': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True) )
+
+    # Get top prediction
+    top_label = result["labels"][0]
+    confidence = round(result["scores"][0], 3)
+
+    response = {
+        "input_text": text,
+        "prediction": top_label,
+        "confidence": confidence,
+        "all_results": result
+    }
+
+    return response
