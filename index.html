@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Analysis Platform | Professional Text Safety Assessment</title>
+    <meta name="description" content="Enterprise-grade AI-powered text analysis platform for toxicity detection, content moderation, and safety assessment across multiple languages.">
+    <meta name="keywords" content="AI content analysis, toxicity detection, text moderation, enterprise AI, content safety">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    
+    <!-- External Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-shield-alt"></i> AI Content Analysis Platform</h1>
+            <p class="subtitle">Enterprise-grade AI-powered text analysis for toxicity detection, content moderation, and safety assessment across multiple languages and contexts.</p>
+            
+            <div class="header-badges">
+                <span class="badge"><i class="fas fa-globe"></i> Multi-Language Support</span>
+                <span class="badge"><i class="fas fa-brain"></i> Advanced AI Models</span>
+                <span class="badge"><i class="fas fa-bolt"></i> Real-Time Analysis</span>
+                <span class="badge"><i class="fas fa-lock"></i> Enterprise Security</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Analysis Section -->
+            <section class="section-header">
+                <h2 class="section-title">Content Safety Analysis</h2>
+                <p class="section-description">
+                    Submit text content for comprehensive safety analysis using our advanced AI models. 
+                    Get detailed insights into toxicity levels, offensive content, and safety recommendations.
+                </p>
+            </section>
+
+            <div class="grid grid-2">
+                <!-- Input Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="card-title">Text Input</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="analysis-form">
+                            <div class="form-group">
+                                <label for="text-input" class="label">
+                                    <i class="fas fa-file-text"></i> Enter text for analysis
+                                </label>
+                                <textarea 
+                                    id="text-input" 
+                                    class="input textarea" 
+                                    placeholder="Paste your text here for toxicity and content safety analysis. Supports multiple languages including English, Hindi, and other regional languages..."
+                                    required
+                                    minlength="5"
+                                ></textarea>
+                            </div>
+                            
+                            <div class="input-controls">
+                                <div class="input-meta">
+                                    <span id="char-count" class="text-muted">0 characters</span>
+                                    <span id="word-count" class="text-muted">0 words</span>
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" id="clear-btn" class="btn btn-secondary">
+                                        <i class="fas fa-trash"></i> Clear
+                                    </button>
+                                    <button type="submit" id="analyze-btn" class="btn btn-primary btn-lg" disabled>
+                                        <i class="fas fa-search"></i> Analyze Content
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">Analysis Results</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="result-display" class="result-display">
+                            <!-- Initial State -->
+                            <div class="initial-state">
+                                <div style="text-align: center; color: var(--color-text-muted);">
+                                    <i class="fas fa-microscope" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                                    <h3>Ready to Analyze</h3>
+                                    <p>Enter text in the input field and click "Analyze Content" to see detailed safety assessment results.</p>
+                                </div>
+                            </div>
+
+                            <!-- Loading State -->
+                            <div class="loading-state" style="display: none;">
+                                <div class="loading-text">
+                                    <div class="loading-spinner"></div>
+                                    <div>
+                                        <h3>Analyzing Content</h3>
+                                        <p>Our AI models are processing your text for safety indicators...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Results Content -->
+                            <div class="result-content" style="display: none;">
+                                <div id="status-badge" class="status-badge"></div>
+                                
+                                <div class="metrics-grid">
+                                    <div class="metric-card">
+                                        <div class="metric-label">Toxicity Level</div>
+                                        <div class="metric-value" id="score-toxicity">--</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-label">Offensive Content</div>
+                                        <div class="metric-value" id="score-offensive">--</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-label">Overall Rating</div>
+                                        <div class="metric-value" id="label-predicted">--</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-label">Language</div>
+                                        <div class="metric-value" id="language-detected">Auto-Detect</div>
+                                    </div>
+                                </div>
+
+                                <div class="analysis-details">
+                                    <h4>Analysis Details</h4>
+                                    <div id="confidence-info" class="text-muted">
+                                        Confidence levels and detailed breakdown will appear here.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <section style="margin-top: 4rem;">
+                <div class="section-header">
+                    <h2 class="section-title">Platform Features</h2>
+                    <p class="section-description">
+                        Comprehensive AI-powered content analysis with enterprise-grade accuracy and performance.
+                    </p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <h3 class="card-title">Multi-Language Support</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Advanced language detection and analysis across multiple languages including English, Hindi, and other regional languages with specialized models.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="card-title">Advanced AI Models</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Ensemble of state-of-the-art transformer models including XLM-RoBERTa, IndicBERT, and specialized toxicity detection models for accurate analysis.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="card-title">Enterprise Security</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Built with enterprise-grade security standards, ensuring data privacy and compliance with industry regulations and best practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI Content Analysis Platform</h3>
+                    <p>Enterprise-grade content safety and toxicity detection powered by advanced artificial intelligence.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-check"></i> Real-time Analysis</a></li>
+                        <li><a href="#"><i class="fas fa-check"></i> Multi-language Support</a></li>
+                        <li><a href="#"><i class="fas fa-check"></i> Enterprise APIs</a></li>
+                        <li><a href="#"><i class="fas fa-check"></i> Custom Models</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-code"></i> API Reference</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Technology</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-robot"></i> AI Models</a></li>
+                        <li><a href="#"><i class="fas fa-server"></i> Infrastructure</a></li>
+                        <li><a href="#"><i class="fas fa-lock"></i> Security</a></li>
+                        <li><a href="#"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Content Analysis Platform. Built with advanced AI for enterprise content safety.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Scripts -->
+    <script src="scripts.js"></script>
+</body>
+</html>
+        
