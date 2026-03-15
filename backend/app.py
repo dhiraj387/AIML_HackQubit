@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 from langdetect import detect
 import torch
-import re
+import r
 
 # -------------------------------
 # App Setup
